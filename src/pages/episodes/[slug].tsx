@@ -28,7 +28,7 @@ type EpisodeProps = {
 }
 
 export default function Episode({ episode }: EpisodeProps) {
-const { play } = usePlayer();
+    const { play } = usePlayer();
 
     return (
         <div className={styles.episode}>
@@ -92,7 +92,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     return {
         // paths: [], quando fica vazio o next entende que não vou gerar de forma estática nenhum episódio no momento da build
-        paths, // como no getStaticProps espera slug, preciso passar um slug aqui que está dentro de params
+        paths,
+            // como no getStaticProps espera slug, preciso passar um slug aqui que está dentro de params
             // { // exemplo de uma página gerada de forma estática
             //     params: {
             //         slug: 'a-importancia-da-contribuicao-em-open-source'
@@ -119,7 +120,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
         thumbnail: data. thumbnail,
         members: data.members,
         // alterou para publishedAt por ser informação alterada
-        publishedAt: format(parseISO(data.published_at), 'd MMM yy', {locale: ptBR}),
+        publishedAt: format(parseISO(data.published_at), 'd MMM yy', { locale: ptBR }),
         // Number() converteu para número
         durationAsString: convertDurationToTimeString(Number(data.file.duration)),
         description: data.description,
@@ -131,6 +132,5 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
             episode,
         },
         revalidate: 60 * 60 * 24, // 24 hours
-
     }
 }

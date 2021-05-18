@@ -24,6 +24,7 @@
 
   footer {
     align-self: stretch; //vai fazer ocupar a largura toda do footer
+
     &.empty .progress{
       opacity: 0.7;
     }
@@ -75,17 +76,16 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.075rem;
+  font-size: 0.875rem;
 
   span {
     display: inline-block;
     width: 4rem;
     text-align: center;
-    font-size: 1rem;
   }
 
   .slider {
-    flex: 1rem;
+    flex: 1;
 
     .emptySlider {
       width: 100%;
@@ -113,7 +113,7 @@
 
     transition: filter 0.2s;
 
-    &:disabled{
+    &:disabled {
       cursor: default;
       opacity: 0.5;
     }
@@ -123,11 +123,11 @@
     }
 
     &.isActive {
-      filter: invert(0.35) sepia(1) saturate(3) hue-rotate(100deg)
+      filter: invert(0.35) sepia(1) saturate(3) hue-rotate(100deg);
     }
     
     &.isActive:hover {
-      filter: brightness(0.6) invert(0.35) sepia(1) saturate(3) hue-rotate(100deg)
+      filter: brightness(0.6) invert(0.35) sepia(1) saturate(3) hue-rotate(100deg);
     }
 
     &.playButton {
@@ -135,9 +135,7 @@
       height: 4rem;
       border-radius: 1rem;
       background: var(--purple-400);
-
-      transition: filter 0.2s;
-
+      
       &:hover:not(:disabled) {
         filter: brightness(0.95);
       }

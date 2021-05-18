@@ -1,13 +1,12 @@
-import Image from "next/image";
-import { useRef, useEffect, useState } from "react";
+import Image from 'next/image';
+import { useRef, useEffect, useState } from 'react';
 import Slider from 'rc-slider';
 
 import 'rc-slider/assets/index.css';
 
-import { usePlayer } from "../../contexts/playerContext";
-
-import styles from "./styles.module.scss";
-import { convertDurationToTimeString } from "../../utils/convertDurationToTimeString";
+import styles from './styles.module.scss';
+import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString';
+import { usePlayer } from '../../contexts/playerContext';
 
 export function Player() {
   // <> é do TS, que diz qual é o tipo do elemento que vou salvar na variável audioRef
@@ -29,22 +28,22 @@ export function Player() {
     playPrevious,
     hasNext,
     hasPrevious,
-    clearPlayerState,
+    clearPlayerState
   } = usePlayer();
 
   // Efeito colateral = side effect. No React isso é utilizado para
   // quando algo mudar, executar um script
   useEffect(() => {
-    if (!audioRef.current){
+    if (!audioRef.current) {
       return;
     }
 
-    if(isPlaying) {
+    if (isPlaying) {
       audioRef.current.play();
     } else {
       audioRef.current.pause();
     }
-  },[isPlaying])
+  }, [isPlaying])
 
   function setupProgressListener() {
     audioRef.current.currentTime = 0;
@@ -59,7 +58,7 @@ export function Player() {
     setProgress(amount);
   }
 
-  function handleEpisodeEndend() {
+  function handleEpisodeEnded() {
     if (hasNext) {
       playNext()
     } else {
@@ -124,7 +123,7 @@ export function Player() {
             ref={audioRef}
             loop={isLooping}
             autoPlay
-            onEnded={handleEpisodeEndend}
+            onEnded={handleEpisodeEnded}
             onPlay={() => setPlayingState(true)}
             onPause={() => setPlayingState(false)}
             // Evento dispara assim que o player conseguiu carregar os dados do episódio
@@ -151,8 +150,8 @@ export function Player() {
             onClick={togglePlay}
           >
             { isPlaying
-            ? <img src="/pause.svg" alt="Tocar" />
-            : <img src="/play.svg" alt="Tocar" /> }
+              ? <img src="/pause.svg" alt="Tocar" />
+              : <img src="/play.svg" alt="Tocar" /> }
           </button>
           <button type="button" onClick={playNext} disabled={!episode || !hasNext}>
             <img src="/play-next.svg" alt="Tocar próxima" />

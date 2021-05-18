@@ -8,7 +8,7 @@ export function convertDurationToTimeString(duration: number) {
     //padStart caso seja apenas um número ele acrescenta o zero na formatação
 
     const timeString = [hours, minutes, seconds]
-        .map(unit => String(unit).padStart(2,'0')) // unit são unidades, horas, minutos e segundos
+        .map(unit => String(unit).padStart(2, '0')) // unit são unidades, horas, minutos e segundos
         .join(':')
 
     return timeString;

@@ -33,12 +33,12 @@ type HomeProps = { //tipagem das props de home, porque props fica any sem isso
 }
 // quando declara array na prototipagem tem que falar qual é o tipo}
 
-export default function Home({ latestEpisodes, allEpisodes }:HomeProps) {
+export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
   const { playList } = usePlayer()
 
   // operador spread: ..., permite distribuir o conteúdo de qualquer objeto iterável em múltiplos
   // elementos. No caso será utilizado para combinar arrays.
-  const episodeList = [...latestEpisodes, ...allEpisodes]
+  const episodeList = [...latestEpisodes, ...allEpisodes];
 
 // map é utilizado para percorrer algo retornando algo, diferente do foreach que percorre sem retorno
   return (
@@ -67,7 +67,7 @@ export default function Home({ latestEpisodes, allEpisodes }:HomeProps) {
                 />
 
                 <div className={styles.episodeDetails}>
-                  <Link href ={`/episodes/${episode.id}`}>
+                  <Link href={`/episodes/${episode.id}`}>
                     <a>{episode.title}</a>
                   </Link>
                   <p>{episode.members}</p>
@@ -77,13 +77,12 @@ export default function Home({ latestEpisodes, allEpisodes }:HomeProps) {
 
                 {/* onClick={ play(episode) }> está errado porque o onClick deve receber
                 como parâmetro uma função e não o retorno da função que seria esse caso*/}
-                <button type="button" onClick = { () => playList(episodeList, index) }>
+                <button type="button" onClick={() => playList(episodeList, index)}>
                   <img src="/play-green.svg" alt="Tocar episódio" />
                 </button>
               </li>
             )
           })}
-
         </ul>
       </section>
       <section className={styles.allEpisodes}>
@@ -161,14 +160,14 @@ export const getStaticProps: GetStaticProps = async () => {
     return {
       id: episode.id,
       title: episode.title,
-      thumbnail: episode. thumbnail,
+      thumbnail: episode.thumbnail,
       members: episode.members,
       // alterou para publishedAt por ser informação alterada
       publishedAt: format(parseISO(episode.published_at), 'd MMM yy', {locale: ptBR}),
       // Number() converteu para número
       duration: Number(episode.file.duration),
       durationAsString: convertDurationToTimeString(Number(episode.file.duration)),
-      url: episode.file.url
+      url: episode.file.url,
     };
   })
 

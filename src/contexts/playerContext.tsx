@@ -1,4 +1,4 @@
-import { createContext, useState, ReactNode, useContext } from "react";
+import { createContext, useState, ReactNode, useContext } from 'react';
 
 type Episode = {
     title: string;
@@ -35,7 +35,7 @@ type PlayerContextProviderProps = {
 // Dentro do parênteses apenas mostra qual o formato dos dados do contexto
 export const PlayerContext = createContext( {} as PlayerContextData); 
 
-export function PlayerContextPorivoder({ children }: PlayerContextProviderProps) {
+export function PlayerContextProvider({ children }: PlayerContextProviderProps) {
   // Estados:
   const [episodeList, setEpisodeList] = useState([]);
   const [currentEpisodeIndex, setCurrentEpisodeIndex] = useState(0);
@@ -44,7 +44,7 @@ export function PlayerContextPorivoder({ children }: PlayerContextProviderProps)
   const [isShuffling, setIsShuffling] = useState(false);
 
   function play(episode: Episode) {
-    setEpisodeList([episode])
+    setEpisodeList([episode]);
     setCurrentEpisodeIndex(0); // forçar valor para zero caso ainda não esteja
     setIsPlaying(true);
   }
@@ -116,7 +116,7 @@ export function PlayerContextPorivoder({ children }: PlayerContextProviderProps)
             togglePlay, 
             toggleLoop,
             toggleShuffle,
-            clearPlayerState,
+            clearPlayerState
         }}
     >
         {children} {/*Repassa todo conteúdo passado no app para dentro da tag aqui*/}
